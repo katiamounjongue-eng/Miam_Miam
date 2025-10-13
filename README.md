@@ -1,0 +1,1 @@
+Hello everyone here is the structur that i'd like we to use during this project !
