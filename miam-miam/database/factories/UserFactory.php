@@ -2,9 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\UserType; // Assurez-vous d'avoir ce Modèle
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -23,22 +26,43 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $firstName = $this->faker->firstName();
+        $lastName = $this->faker->lastName();
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            // Note: user_id sera géré par un Trait ou le Seeder si non-incrémenté
+            'user_type_id' => UserType::where('user_type_name', 'Student')->first()?->user_type_id,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            // Hachage sécurisé du mot de passe 
+            'user_password' => Hash::make('password'), 
+            'mail_adress' => $this->faker->unique()->safeEmail(),
+            // Correction: Utilisation d'un format string pour le numéro de téléphone
+            'phone_number' => '237' . $this->faker->unique()->randomNumber(8, true), 
+            'inscription_date' => $this->faker->dateTimeBetween('-2 years', 'now')->format('Y-m-d'),
+            'account_statut' => true,
+            'loyalty_points' => $this->faker->numberBetween(0, 5000), // Ajout des points de fidélité
         ];
     }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
+    
+    // État pour créer un Admin facilement
+    public function admin()
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
+        return $this->state(function (array $attributes) {
+            return [
+                'user_type_id' => UserType::where('user_type_name', 'Admin')->first()?->user_type_id,
+                'mail_adress' => 'admin@zeducspace.com',
+            ];
+        });
+    }
+
+    // État pour créer un Employé facilement
+    public function employee()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_type_id' => UserType::where('user_type_name', 'Employee')->first()?->user_type_id,
+            ];
+        });
     }
 }
