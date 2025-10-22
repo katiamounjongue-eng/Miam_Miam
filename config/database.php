@@ -31,7 +31,7 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        /*'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
@@ -41,16 +41,16 @@ return [
             'journal_mode' => null,
             'synchronous' => null,
             'transaction_mode' => 'DEFERRED',
-        ],
+        ]*/
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DB_URL'),
+            'url' => env('http://localhost/phpmyadmin/index.php?route=/server/privileges&adduser=1'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'miam_miam_bd'),
+            'username' => env('DB_USERNAME', 'katia'),
+            'password' => env('DB_PASSWORD', '@Mathis2015'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
@@ -63,7 +63,7 @@ return [
             ]) : [],
         ],
 
-        'mariadb' => [
+        /*'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -111,7 +111,7 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
-        ],
+        ],*/
 
     ],
 
