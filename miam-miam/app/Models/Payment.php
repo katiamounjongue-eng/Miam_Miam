@@ -25,7 +25,6 @@ class Payment extends Model
     protected $casts = [
         'payment_date' => 'date',
     ];
-
     
     // Obtenir les factures  utilisant cette méthode de paiement.
     
