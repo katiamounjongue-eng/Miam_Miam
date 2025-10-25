@@ -1,0 +1,341 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+     font-family: system-ui, -apple-system, 'Times New Roman', Times, serif;
+        background-color: #262626;
+        background-image: 
+        radial-gradient(circle at 30% 40%, rgba(119, 118, 118, 0.404) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgb(68, 68, 68) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(77, 75, 75, 0.747) 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(68, 68, 68) 0%, transparent 45%),
+        radial-gradient(circle at 80% 30%, rgb(61, 61, 61) 0%, transparent 50%);
+        backdrop-filter: blur(3px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    /* Responsive container that adapts to phone / tablet / desktop */
+    .login-container {
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        background: rgba(0, 0, 0, 0.35);
+        padding: 36px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    /* Logo adjustments */
+    .logo-container {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        width: 130px;
+        height: 130px;
+        border-radius: 100%;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        object-fit: cover;
+        display: inline-block;
+    }
+
+    /* Form fields */
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    label {
+        display: block;
+        color: #d4a574;
+        font-size: 13px;
+        margin-bottom: 8px;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+    }
+
+    /* Make inputs fluid and responsive */
+    input,
+    textarea,
+    select {
+        width: 100%;
+        max-width: 100%;
+        height: 52px;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(0,0,0,0.5);
+        border-radius: 10px;
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.25s ease;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        min-height: 100px;
+        height: auto;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.10);
+        border-color: #d4a574;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    .password-dots {
+        letter-spacing: 4px;
+    }
+
+    /* Button */
+    .submit-btn {
+        font-family: 'Times New Roman';
+        display: inline-block;
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #d4a574 0%, #c99559 100%);
+        border: none;
+        border-radius: 6px;
+        color: #1a1a1a;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        box-sizing: border-box;
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(135deg, #e0b585 0%, #d4a574 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 165, 116, 0.25);
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Layout helpers */
+    .form-row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    /* Responsive tweaks */
+
+    /* Large screens: give a bit more room */
+    @media (min-width: 1200px) {
+        .login-container {
+            max-width: 640px;
+            padding: 44px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+        }
+
+        input, textarea {
+            font-size: 15px;
+            height: 56px;
+        }
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .login-container {
+            max-width: 520px;
+            padding: 32px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        input, textarea {
+            height: 50px;
+            font-size: 14px;
+        }
+    }
+
+    /* Small tablets / large phones */
+    @media (max-width: 768px) {
+        body {
+            padding: 16px;
+        }
+
+        .login-container {
+            max-width: 420px;
+            padding: 24px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 16px;
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        input, textarea {
+            height: 48px;
+            font-size: 13px;
+        }
+
+        .submit-btn {
+            padding: 12px;
+            font-size: 15px;
+        }
+    }
+
+    /* Phones */
+    @media (max-width: 480px) {
+        .login-container {
+            max-width: 360px;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
+
+        .form-row {
+            flex-direction: column;
+        }
+
+        input, textarea {
+            height: 46px;
+            font-size: 13px;
+        }
+
+        label {
+            font-size: 11px;
+        }
+
+        .submit-btn {
+            padding: 12px;
+            font-size: 15px;
+        }
+    };
+/* Reset and Base Styles */
+* {
+    background-color: #262626;
+    background-image: 
+    radial-gradient(circle at 30% 40%, rgba(119, 118, 118, 0.404) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgb(68, 68, 68) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(77, 75, 75, 0.747) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(68, 68, 68) 0%, transparent 45%),
+    radial-gradient(circle at 80% 30%, rgb(61, 61, 61) 0%, transparent 50%);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    color: #d4a574;
+    font-size: 12px;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+input {
+    width: 100%;
+    width: 450px;
+    height: 55px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #d4a574;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.password-dots {
+    letter-spacing: 4px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #d4a574 0%, #c99559 100%);
+    border: none;
+    border-radius: 4px;
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitialize;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #e0b585 0%, #d4a574 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 165, 116, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}

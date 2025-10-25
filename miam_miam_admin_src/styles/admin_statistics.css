@@ -1,0 +1,455 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #3a3a3a;
+    color: #ffffff;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 210vh;
+    background-color: #000000;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.logo {
+    width: 150px;
+    margin: 0 auto 30px;
+    display: block;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-link svg {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #D4A574;
+}
+
+.nav-link.active svg {
+    color: #D4A574 !important;
+}
+
+.nav-link.active {
+    color: #D4A574;
+}
+
+/* Restaurant Status */
+.restaurant-status {
+    margin-top: auto;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4caf50;
+}
+
+/* Stats Content Area */
+.stats-content {
+    width: 950px;
+    margin-left: 180px;
+    min-height: 100vh;
+}
+
+/* Stats Header */
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #3a3a3a;
+    border-bottom: 1px solid #555;
+}
+
+.header-left h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.header-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.notification-bell {
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.chevron-down {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/* Main Content */
+.stats-main-content {
+    padding: 30px 40px;
+}
+
+/* Stats Cards Row */
+.stats-cards-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    flex: 1;
+    background-color: #3a3a3a;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.acceptance-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.percentage {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Charts Row */
+.charts-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* Presentation Card */
+.presentation-card {
+    flex: 2;
+    background-color: #3a3a3a;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.week-button {
+    background-color: transparent;
+    border: 1px solid #666;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.week-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Chart Container */
+.chart-container {
+    display: flex;
+    gap: 15px;
+    height: 280px;
+}
+
+.chart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-right: 10px;
+    font-size: 11px;
+    color: #888;
+    min-width: 50px;
+}
+
+.chart-bars {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 8px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 40px;
+    position: relative;
+}
+
+.bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.bar-column {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: center;
+}
+
+.bar {
+    width: 70%;
+    background: linear-gradient(to bottom, #D4A574, #B8935F);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    min-height: 20px;
+}
+
+.bar:hover {
+    opacity: 0.8;
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -30px;
+    font-size: 10px;
+    color: #888;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.bar-wrapper:nth-child(1) .bar-label { left: 2%; }
+.bar-wrapper:nth-child(2) .bar-label { left: 14%; }
+.bar-wrapper:nth-child(3) .bar-label { left: 27%; }
+.bar-wrapper:nth-child(4) .bar-label { left: 40%; }
+.bar-wrapper:nth-child(5) .bar-label { left: 53%; }
+.bar-wrapper:nth-child(6) .bar-label { left: 67%; }
+.bar-wrapper:nth-child(7) .bar-label { left: 81%; }
+
+/* Top Selling Card */
+.top-selling-card {
+    flex: 1;
+    background-color: #3a3a3a;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.top-selling-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+.top-selling-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.top-selling-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.item-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #2a2a2a;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #D4A574;
+    flex-shrink: 0;
+}
+
+.item-name {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .stats-cards-row {
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        min-width: calc(50% - 10px);
+    }
+
+    .charts-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 20px 5px;
+    }
+
+    .logo {
+        width: 40px;
+    }
+
+    .nav-link {
+        justify-content: center;
+        font-size: 0;
+        padding: 12px 8px;
+    }
+
+    .nav-link svg {
+        margin-right: 0 !important;
+    }
+
+    .restaurant-status span {
+        display: none;
+    }
+
+    .stats-content {
+        margin-left: 60px;
+    }
+
+    .stats-main-content {
+        padding: 20px;
+    }
+
+    .stats-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        align-items: flex-start;
+    }
+
+    .stats-cards-row {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        min-width: 100%;
+    }
+
+    .chart-container {
+        height: 220px;
+    }
+
+    .bar-label {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left h1 {
+        font-size: 16px;
+    }
+
+    .header-date {
+        font-size: 11px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+    }
+
+    .card-header h3 {
+        font-size: 16px;
+    }
+
+    .top-selling-card h3 {
+        font-size: 16px;
+    }
+
+    .chart-y-axis {
+        font-size: 9px;
+        min-width: 40px;
+    }
+}

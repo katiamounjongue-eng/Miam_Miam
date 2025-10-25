@@ -1,0 +1,342 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #3a3a3a;
+    color: #ffffff;
+}
+
+/* Layout Principal */
+.sidebar {
+  width: 240px;
+  height: 500vh;
+  background-color: #0d0d0d;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.logo {
+  width: 150px;
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.nav-link {
+  width: 90%;
+  padding: 12px 16px;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-family: 'Times New Roman', Times, serif;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #2a2a2a;
+}
+
+.nav-link.active {
+  background-color: #2a2a2a;
+  border: 1px solid #D4A574;
+  color: #D4A574;
+}
+
+.restaurant-status {
+  margin-top: auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4ade80;
+  font-size: 11px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #4ade80;
+  border-radius: 50%;
+}
+
+/* Content Area */
+.settings-content {
+  margin-left: 180px;
+  min-height: 100vh;
+  background-color: #2a2a2a;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.settings-header {
+  background-color: #3a3a3a;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #4a4a4a;
+}
+
+.header-left h1 {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 0 0 4px 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.header-date {
+  color: #999999;
+  font-size: 13px;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info span {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.chevron-down {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.notification-bell {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Main Content */
+.settings-main-content {
+  padding: 40px;
+  flex: 1;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title-row h2 {
+  color: #ffffff;
+  font-size: 18px;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.add-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Working Hours Container */
+.working-hours-container {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+/* Time Field */
+.time-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-label {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.time-input-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.time-input {
+  background-color: #3a3a3a;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  width: 80px;
+  text-align: center;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.time-input:focus {
+  background-color: #4a4a4a;
+}
+
+.time-input::-webkit-inner-spin-button,
+.time-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.time-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.period-select {
+  background-color: #3a3a3a;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.period-select:focus {
+  background-color: #4a4a4a;
+}
+
+.period-select option {
+  background-color: #3a3a3a;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 80px;
+  }
+
+  .settings-content {
+    margin-left: 80px;
+  }
+
+  .nav-link {
+    justify-content: center;
+    font-size: 0;
+    padding: 12px;
+  }
+
+  .nav-link svg {
+    margin: 0;
+  }
+
+  .restaurant-status span {
+    display: none;
+  }
+
+  .logo {
+    width: 60px;
+    height: 50px;
+  }
+
+  .working-hours-container {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .settings-content {
+    margin-left: 0;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .nav-link {
+    width: auto;
+    padding: 10px;
+    font-size: 0;
+  }
+
+  .restaurant-status {
+    display: none;
+  }
+
+  .settings-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .settings-main-content {
+    padding: 20px;
+  }
+
+  .title-row {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .working-hours-container {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .time-field {
+    width: 100%;
+  }
+}
