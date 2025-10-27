@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class MigrationOrders extends Migration
 {
     public function up(): void
     {
@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->foreign('localisation_id')->references('localisation_id')->on('localisation')->onDelete('cascade');
             $table->foreign('order_statut_id')->references('order_statut_id')->on('order_statut')->onDelete('cascade');
+            
+            $table->index('order_date');
         });
     }
 

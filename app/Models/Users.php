@@ -6,46 +6,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Users extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable;
 
-   
-/**
-     * Table associate.
-     *
-     * @var string
-     */
     protected $table = 'users';
-
-    /**
-     * primary key.
-     *
-     * @var string
-     */
     protected $primaryKey = 'user_id';
-
-    /**
-     * Auto-incrementing database.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * Primary key type.
-     *
-     * @var string
-     */
     protected $keyType = 'string';
+    public $timestamps = true;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'user_id',
         'user_type_id',
@@ -58,34 +30,53 @@ class Users extends Authenticatable
         'account_statut',
     ];
 
-    /**
-     * Attributs.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'user_password',
         'remember_token',
     ];
 
-    /**
-     * Les attributs à convertir automatiquement.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'inscription_date' => 'datetime',
-            'account_statut' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'inscription_date' => 'datetime',
+        'account_statut' => 'boolean',
+    ];
 
     /**
-     * Relation : un utilisateur appartient à un type d'utilisateur.
+     * Relation : un utilisateur appartient à un type
      */
     public function userType()
     {
         return $this->belongsTo(UserType::class, 'user_type_id', 'user_type_id');
+    }
+
+    /**
+     * Relation : les commandes de l'utilisateur
+     */
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, 'user_id', 'user_id');
+    }
+
+    /**
+     * Relation : les points de fidélité
+     */
+    public function loyaltyPoints()
+    {
+        return $this->hasMany(LoyaltyPoint::class, 'user_id', 'user_id');
+    }
+
+    /**
+     * Obtenir le solde total de points
+     */
+    public function getTotalPointsAttribute()
+    {
+        return $this->loyaltyPoints()->sum('points');
+    }
+
+    /**
+     * Override pour Sanctum - utiliser user_password au lieu de password
+     */
+    public function getAuthPassword()
+    {
+        return $this->user_password;
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4f4c97625256e6e26c90aaf5f872e1a",
+    "content-hash": "4cde1d4e6295fd04a5f85132ec884f08",
     "packages": [
         {
             "name": "brick/math",
@@ -999,7 +999,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "GuzzleHttp\\UriTemplate\\": "src"
+                    "GuzzleHttp\\Uritemplate\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

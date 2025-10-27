@@ -6,68 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class User_Type extends Model
 {
-/** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+use HasFactory;
 
-   
-/**
-     * Table associate.
-     *
-     * @var string
-     */
-    protected $table = 'User_Type';
-
-    /**
-     * primary key.
-     *
-     * @var string
-     */
+    protected $table = 'user_type';
     protected $primaryKey = 'user_type_id';
-
-    /**
-     * Auto-incrementing database.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * Primary key type.
-     *
-     * @var string
-     */
     protected $keyType = 'string';
+    public $timestamps = true;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
-        'user_type_id ',
+        'user_type_id',
         'user_type_name',
     ];
 
     /**
-     * Attributs.
-     *
-     * @var list<string>
+     * Relation : un type d'utilisateur a plusieurs utilisateurs
      */
-    protected $hidden = [
-
-    ];
-
-    /**
-     * Les attributs à convertir automatiquement.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    { }
-
-    /**
-     * Relation : un utilisateur appartient à un type d'utilisateur.
-     */
-    public function userType(){}
-    
+    public function users()
+    {
+        return $this->hasMany(Users::class, 'user_type_id', 'user_type_id');
+    }
 }

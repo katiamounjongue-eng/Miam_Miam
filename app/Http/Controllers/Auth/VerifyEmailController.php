@@ -3,29 +3,38 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class VerifyEmailController extends Controller
+class EmailVerificationNotificationController extends Controller
 {
     /**
-     * Mark the authenticated user's email address as verified.
+     * Envoie un nouveau lien de vérification à l'utilisateur connecté.
      */
-    public function __invoke(EmailVerificationRequest $request): RedirectResponse
+    
+    public function verify(EmailVerificationRequest $request): JsonResponse
     {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(
-                config('app.frontend_url').'/dashboard?verified=1'
-            );
+        $user = $request->user();
+
+        // Vérifie si l'utilisateur a déjà validé son e-mail
+        if ($user->hasVerifiedEmail()) {
+            return response()->json([
+                'message' => 'Votre adresse e-mail est déjà vérifiée.'
+            ], 200);
         }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
+        // Envoie l'email de vérification
+        try {
+            $user->sendEmailVerificationNotification();
 
-        return redirect()->intended(
-            config('app.frontend_url').'/dashboard?verified=1'
-        );
+            return response()->json([
+                'message' => 'Un lien de vérification a été envoyé à votre adresse e-mail.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Échec de l’envoi du mail. Vérifiez la configuration du serveur mail.',
+                'details' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

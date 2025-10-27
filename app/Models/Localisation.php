@@ -9,56 +9,25 @@ class Localisation extends Model
 {
     use HasFactory;
 
-    /**
-     * Nom de la table associée.
-     *
-     * @var string
-     */
     protected $table = 'localisation';
-
-    /**
-     * Clé primaire du modèle.
-     *
-     * @var string
-     */
     protected $primaryKey = 'localisation_id';
-
-    /**
-     * Indique si la clé primaire est auto-incrémentée.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * Type de la clé primaire.
-     *
-     * @var string
-     */
     protected $keyType = 'string';
+    public $timestamps = true;
 
-    /**
-     * Les attributs pouvant être assignés en masse.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'localisation_id',
         'localisation_name',
-        'localisation_delevery_price',
+        // ✅ CORRIGÉ : delivery au lieu de delevery
+        'localisation_delivery_price',
     ];
 
-    /**
-     * Les attributs à convertir automatiquement.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
-        'localisation_delevery_price' => 'decimal:2',
+        'localisation_delivery_price' => 'decimal:2',
     ];
 
     /**
-     * Relation : une localisation peut être associée à plusieurs commandes.
+     * Relation : une localisation peut être associée à plusieurs commandes
      */
     public function orders()
     {

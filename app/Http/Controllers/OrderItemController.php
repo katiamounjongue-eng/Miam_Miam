@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\OrderItem; // modèle correspondant
+use App\Models\Orderitem; // modèle correspondant
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
-class OrderItemController extends Controller
+class OrderitemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $items = OrderItem::all();
+        $items = Orderitem::all();
         return response()->json($items);
     }
 
@@ -25,17 +25,17 @@ class OrderItemController extends Controller
     {
         // Validation des champs de la requête
         $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'item_id' => 'required|exists:item,id',
+            'order_id' => 'required|exists:orders_id',
+            'item_id' => 'required|exists:item_id',
             'quantity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
         ]);
 
         // Génération automatique du nouvel ID
-        $lastItem = OrderItem::orderBy('id', 'desc')->first();
-        if ($lastItem) {
+        $lastitem = Orderitem::orderBy('id', 'desc')->first();
+        if ($lastitem) {
             // Récupère la partie numérique et incrémente
-            $num = intval(substr($lastItem->id, 2)) + 1;
+            $num = intval(substr($lastitem->id, 2)) + 1;
         } else {
             $num = 1;
         }
@@ -43,8 +43,8 @@ class OrderItemController extends Controller
         // Recrée l'ID sous le format OI000001
         $newId = 'OI' . str_pad($num, 6, '0', STR_PAD_LEFT);
 
-        // Création du nouvel Order Item
-        $orderItem = OrderItem::create([
+        // Création du nouvel Order item
+        $orderitem = Orderitem::create([
             'id' => $newId,
             'order_id' => $request->order_id,
             'item_id' => $request->item_id,
@@ -54,7 +54,7 @@ class OrderItemController extends Controller
 
         return response()->json([
             'message' => 'Order item créé avec succès',
-            'data' => $orderItem
+            'data' => $orderitem
         ], 201);
     }
 
@@ -63,8 +63,8 @@ class OrderItemController extends Controller
      */
     public function show(string $id)
     {
-        $orderItem = OrderItem::findOrFail($id);
-        return response()->json($orderItem);
+        $orderitem = Orderitem::findOrFail($id);
+        return response()->json($orderitem);
     }
 
     /**
@@ -72,18 +72,18 @@ class OrderItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $orderItem = OrderItem::findOrFail($id);
+        $orderitem = Orderitem::findOrFail($id);
 
         $request->validate([
             'quantity' => 'sometimes|required|integer|min:1',
             'price' => 'sometimes|required|numeric|min:0',
         ]);
 
-        $orderItem->update($request->only(['quantity', 'price']));
+        $orderitem->update($request->only(['quantity', 'price']));
 
         return response()->json([
             'message' => 'Order item mis à jour avec succès',
-            'data' => $orderItem
+            'data' => $orderitem
         ]);
     }
 
@@ -92,8 +92,8 @@ class OrderItemController extends Controller
      */
     public function destroy(string $id)
     {
-        $orderItem = OrderItem::findOrFail($id);
-        $orderItem->delete();
+        $orderitem = Orderitem::findOrFail($id);
+        $orderitem->delete();
 
         return response()->json(['message' => 'Order item supprimé avec succès']);
     }

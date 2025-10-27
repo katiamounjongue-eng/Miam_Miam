@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class MigrationUser extends Migration
 {
     public function up(): void
     {
@@ -13,11 +13,13 @@ return new class extends Migration
             $table->string('user_type_id', 8);
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('user_password', 15)->unique();
-            $table->string('mail_adress')->unique();
-            $table->string('phone_number', 12)->unique();
+            // ✅ CORRIGÉ : 255 pour stocker le hash bcrypt (60+ chars)
+            $table->string('user_password', 255);
+            $table->string('mail_adress')->unique()->nullable();
+            $table->string('phone_number', 12)->unique()->nullable();
             $table->date('inscription_date');
-            $table->boolean('account_statut');
+            $table->boolean('account_statut')->default(true);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

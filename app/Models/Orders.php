@@ -85,4 +85,16 @@ class Orders extends Model
     {
         return $this->belongsTo(Localisation::class, 'localisation_id', 'localisation_id');
     }
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id', 'order_id');
+    }
+
+    /**
+     * Relation : la facture de la commande
+     */
+    public function bill()
+    {
+        return $this->hasOne(Bill::class, 'order_id', 'order_id');
+    }
 }

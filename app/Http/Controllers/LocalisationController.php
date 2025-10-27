@@ -32,7 +32,7 @@ class LocalisationController extends Controller
     {
         $request->validate([
             'localisation_name' => 'required|string|max:255|unique:localisation,localisation_name',
-            'localisation_delevery_price' => 'required|numeric|min:0',
+            'localisation_delivery_price' => 'required|numeric|min:0',
         ]);
 
         // Génération automatique de l'ID sous la forme LC00001, LC00002, ...
@@ -47,7 +47,7 @@ class LocalisationController extends Controller
         Localisation::create([
             'localisation_id' => $localisation_id,
             'localisation_name' => $request->localisation_name,
-            'localisation_delevery_price' => $request->localisation_delevery_price,
+            'localisation_delivery_price' => $request->localisation_delivery_price,
         ]);
 
         return redirect()->route('localisations.index')->with('success', 'Localisation ajoutée avec succès.');
@@ -80,12 +80,12 @@ class LocalisationController extends Controller
 
         $request->validate([
             'localisation_name' => 'required|string|max:255|unique:localisation,localisation_name,' . $id . ',localisation_id',
-            'localisation_delevery_price' => 'required|numeric|min:0',
+            'localisation_delivery_price' => 'required|numeric|min:0',
         ]);
 
         $localisation->update([
             'localisation_name' => $request->localisation_name,
-            'localisation_delevery_price' => $request->localisation_delevery_price,
+            'localisation_delivery_price' => $request->localisation_delivery_price,
         ]);
 
         return redirect()->route('localisations.index')->with('success', 'Localisation mise à jour avec succès.');
