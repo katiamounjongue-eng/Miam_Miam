@@ -18,8 +18,8 @@
         <label for="last_name">Nom:</label>
         <input type="text" name="last_name" required><br>
 
-        <label for="user_password">Mot de passe:</label>
-        <input type="password" name="user_password" required><br>
+        <label for="password">Mot de passe:</label>
+        <input type="password" name="password" required><br>
 
         <label for="mail_adress">Email:</label>
         <input type="email" name="mail_adress"><br>

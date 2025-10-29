@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // 1. Types d'utilisateurs
         $userTypes = [
             ['user_type_id' => 'AD00000', 'user_type_name' => 'Admin'],
-            ['user_type_id' => 'MG00000', 'user_type_name' => 'Manager'],
+            ['user_type_id' => 'MG00000', 'user_type_name' => 'gérant'],
             ['user_type_id' => 'CH00000', 'user_type_name' => 'Chef'],
             ['user_type_id' => 'SE00000', 'user_type_name' => 'Serveur'],
             ['user_type_id' => 'LI00000', 'user_type_name' => 'Livreur'],
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             // Admins
             ['user_id' => 'US_1_0001', 'user_type_id' => 'AD00000', 'first_name' => 'Mounjongue', 'last_name' => 'Katia', 'mail_adress' => 'katia.mounjongue@2029.ucac-icam.com', 'phone_number' => '237699943817'],
             
-            // Managers
+            // gérants
             ['user_id' => 'US_1_0002', 'user_type_id' => 'MG00000', 'first_name' => 'Justine', 'last_name' => 'Nebo', 'mail_adress' => 'justine-auriane.dzukou@2029.ucac-icam.com', 'phone_number' => '237677002001'],
             
             // Chefs
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($users as $userData) {
             Users::create(array_merge($userData, [
-                'user_password' => $defaultPassword,
+                'password' => $defaultPassword,
                 'inscription_date' => now(),
                 'account_statut' => true,
             ]));
@@ -238,7 +238,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('');
         $this->command->info('🔑 Identifiants de connexion:');
         $this->command->info('   Admin: katia.mounjongue@2029.ucac-icam.com / @Katia2029');
-        $this->command->info('   Manager: justine-auriane.dzukou@2029.ucac-icam.com/ @Auriane2029');
+        $this->command->info('   gérant: justine-auriane.dzukou@2029.ucac-icam.com/ @Auriane2029');
         $this->command->info('   Chef: mylena.chembou@2029.ucac-icam.com /  @Bernadette2029');
         $this->command->info('   Client: joel.bouyim@2029.ucac-icam.com /  @Joel2029');
         $this->command->info('   Client: ariel.ngounou@2029.ucac-icam.com /  @Tomi2029');

@@ -14,7 +14,7 @@ class MigrationUser extends Migration
             $table->string('first_name');
             $table->string('last_name');
             // ✅ CORRIGÉ : 255 pour stocker le hash bcrypt (60+ chars)
-            $table->string('user_password', 255);
+            $table->string('password', 255);
             $table->string('mail_adress')->unique()->nullable();
             $table->string('phone_number', 12)->unique()->nullable();
             $table->date('inscription_date');

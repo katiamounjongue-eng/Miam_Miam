@@ -80,18 +80,18 @@ class UsersController extends Controller
                 'user_type_id' => 'required|string|max:8|exists:User_Type,user_type_id',
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
-                'user_password' => [
+                'password' => [
                     'required',
                     'string',
                     'max:255',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
-                    Rule::unique('users', 'user_password'),
+                    Rule::unique('users', 'password'),
                 ],
                 'mail_adress' => 'nullable|email|unique:users,mail_adress',
                 'phone_number' => 'nullable|digits:12|unique:users,phone_number',
                 'account_statut' => 'nullable|boolean',
             ], [
-                'user_password.regex' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un symbole.'
+                'password.regex' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un symbole.'
             ]);
 
             if (!$request->mail_adress && !$request->phone_number) {
@@ -113,7 +113,7 @@ class UsersController extends Controller
                 'user_type_id' => $request->user_type_id,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'user_password' => Hash::make($request->user_password),
+                'password' => Hash::make($request->password),
                 'mail_adress' => $request->mail_adress,
                 'phone_number' => $request->phone_number,
                 'inscription_date' => now(),
@@ -178,18 +178,18 @@ class UsersController extends Controller
             $request->validate([
                 'first_name' => 'sometimes|string|max:255',
                 'last_name' => 'sometimes|string|max:255',
-                'user_password' => [
+                'password' => [
                     'sometimes',
                     'string',
                     'max:255',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
-                    Rule::unique('users', 'user_password')->ignore($id, 'user_id'),
+                    Rule::unique('users', 'password')->ignore($id, 'user_id'),
                 ],
                 'mail_adress' => ['nullable', 'email', Rule::unique('users', 'mail_adress')->ignore($id, 'user_id')],
                 'phone_number' => ['nullable', 'digits:12', Rule::unique('users', 'phone_number')->ignore($id, 'user_id')],
                 'account_statut' => 'sometimes|boolean',
             ], [
-                'user_password.regex' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un symbole.'
+                'password.regex' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un symbole.'
             ]);
 
             if ($request->has('user_type_id') && $request->user_type_id != $user->user_type_id) {
@@ -200,8 +200,8 @@ class UsersController extends Controller
 
             $data = $request->only(['first_name', 'last_name', 'mail_adress', 'phone_number', 'account_statut']);
             
-            if ($request->filled('user_password')) {
-                $data['user_password'] = Hash::make($request->user_password);
+            if ($request->filled('password')) {
+                $data['password'] = Hash::make($request->password);
             }
 
             $user->update($data);
@@ -277,7 +277,7 @@ class UsersController extends Controller
         try {
             $query = Users::with('userType')
                 ->whereHas('userType', function($q) {
-                    $q->whereIn('user_type_name', ['Admin', 'Manager', 'Chef', 'Serveur', 'Livreur', 'Caissier']);
+                    $q->whereIn('user_type_name', ['Admin', 'gérant', 'Chef', 'Serveur', 'Livreur', 'Caissier']);
                 });
 
             // Filtre par rôle spécifique

@@ -30,8 +30,10 @@ use App\Http\Controllers\Admin\RestaurantHoursController;
 
 Route::prefix('auth')->group(function () {
     // Routes publiques
-    Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
-    Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
 
     // Routes protégées (authentifié)
     Route::middleware('auth:sanctum')->group(function () {
@@ -280,28 +282,28 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:Admin'])->group(functi
 
 /*
 |--------------------------------------------------------------------------
-| 5. ESPACE MANAGER
+| 5. ESPACE gérant
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('manager')->middleware(['auth:sanctum', 'role:Manager'])->group(function () {
+Route::prefix('gérant')->middleware(['auth:sanctum', 'role:gérant'])->group(function () {
     
     // Supervision des commandes
     Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->name('manager.orders.index');
-        Route::get('/{id}', [OrderController::class, 'show'])->name('manager.orders.show');
-        Route::patch('/{id}/status', [OrderController::class, 'updateStatus'])->name('manager.orders.update-status');
+        Route::get('/', [OrderController::class, 'index'])->name('gérant.orders.index');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('gérant.orders.show');
+        Route::patch('/{id}/status', [OrderController::class, 'updateStatus'])->name('gérant.orders.update-status');
     });
 
     // Gestion des employés (consultation et création)
     Route::prefix('employees')->group(function () {
-        Route::get('/', [UsersController::class, 'getEmployees'])->name('manager.employees.index');
-        Route::post('/', [UsersController::class, 'store'])->name('manager.employees.store');
-        Route::get('/{id}', [UsersController::class, 'show'])->name('manager.employees.show');
+        Route::get('/', [UsersController::class, 'getEmployees'])->name('gérant.employees.index');
+        Route::post('/', [UsersController::class, 'store'])->name('gérant.employees.store');
+        Route::get('/{id}', [UsersController::class, 'show'])->name('gérant.employees.show');
     });
 
     // Statistiques
-    Route::get('/statistics/dashboard', [ItemStatsController::class, 'getMostOrderedItems'])->name('manager.stats.dashboard');
+    Route::get('/statistics/dashboard', [ItemStatsController::class, 'getMostOrderedItems'])->name('gérant.stats.dashboard');
 });
 
 /*

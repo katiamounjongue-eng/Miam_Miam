@@ -22,6 +22,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
+    protected $middlewareAliases = [
+    'role' => \App\Http\Middleware\RoleMiddleware::class,
+    'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+    ];
 
     /**
      * Les middleware globaux de l'application.

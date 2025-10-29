@@ -31,9 +31,9 @@ class NewPasswordController extends Controller
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
-                // Adapter à ton modèle : champ user_password
+                // Adapter à ton modèle : champ password
                 $user->forceFill([
-                    'user_password' => Hash::make($request->password),
+                    'password' => Hash::make($request->password),
                     'remember_token' => Str::random(60),
                 ])->save();
 

@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AuthService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
  * Contrôleur d'authentification
@@ -13,22 +19,15 @@ class AuthController extends Controller
 {
     protected $authService;
 
-    public function __construct(AuthService $authService)
+    public function __construct()
     {
-        $this->authService = $authService;
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'refresh']]);
     }
 
-    /**
-     * Connexion
-     * 
-     * POST /api/auth/login
-     * Body: {
-     *   "identifier": "email@example.com" ou "237612345678",
-     *   "password": "SecureP@ss123"
-     * }
-     */
+
     public function login(Request $request)
     {
+        
         try {
             $request->validate([
                 'identifier' => 'required|string',
@@ -154,7 +153,7 @@ class AuthController extends Controller
                     'max:255',
                     'confirmed',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
-                    Rule::unique('users', 'user_password'),
+                    Rule::unique('users', 'password'),
                 ],
             ], [
                 'new_password.regex' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un symbole.'
@@ -188,9 +187,10 @@ class AuthController extends Controller
      *   "phone_number": "237612345678"
      * }
      */
-    public function register(Request $request)
+    public function register(RegisterRequest  $request)
     {
         try {
+            DB::beginTransaction();
             $request->validate([
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
@@ -201,7 +201,7 @@ class AuthController extends Controller
                     'max:255',
                     'confirmed',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
-                    Rule::unique('users', 'user_password'),
+                    Rule::unique('users', 'password'),
                 ],
                 'mail_adress' => 'nullable|email|unique:users,mail_adress',
                 'phone_number' => 'nullable|digits:12|unique:users,phone_number',
@@ -222,7 +222,7 @@ class AuthController extends Controller
                 'user_type_id' => \App\Models\UserType::where('user_type_name', 'Client')->first()->user_type_id,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'user_password' => $request->password,
+                'password' => $request->password,
                 'mail_adress' => $request->mail_adress,
                 'phone_number' => $request->phone_number,
                 'account_statut' => true,
@@ -241,6 +241,10 @@ class AuthController extends Controller
                 'password' => $request->password
             ]);
 
+            DB::commit();
+
+            $token = JWTAuth::fromUser($user);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Inscription réussie',
@@ -253,7 +257,7 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage()
-            ], 400);
+            ], 500);
         }
     }
 

@@ -23,7 +23,7 @@ class Users extends Authenticatable
         'user_type_id',
         'first_name',
         'last_name',
-        'user_password',
+        'password',
         'mail_adress',
         'phone_number',
         'inscription_date',
@@ -31,7 +31,7 @@ class Users extends Authenticatable
     ];
 
     protected $hidden = [
-        'user_password',
+        'password',
         'remember_token',
     ];
 
@@ -73,10 +73,20 @@ class Users extends Authenticatable
     }
 
     /**
-     * Override pour Sanctum - utiliser user_password au lieu de password
+     * Override pour Sanctum - utiliser password au lieu de password
      */
-    public function getAuthPassword()
+    public function getJWTIdentifier()
     {
-        return $this->user_password;
+        return $this->getKey();
     }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            'role' => $this->role,
+            'email' => $this->email,
+            'nom' => $this->nom
+        ];
+    }
+
 }
