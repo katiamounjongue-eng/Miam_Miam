@@ -1,0 +1,131 @@
+:root {
+    --sidebar-width: 265px;
+    --header-height: 80px;
+    --accent-brown: #caa06a;
+}
+
+/* ===== HEADER GLOBAL ===== */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    height: var(--header-height);
+    background: transparent;
+    /* ✅ transparent */
+    backdrop-filter: blur(10px);
+    /* ✅ léger flou sur fond (optionnel) */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* ✅ fine bordure subtile */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    color: #fff;
+    z-index: 200;
+    /* ✅ reste visible même en scroll */
+}
+
+/* ===== GAUCHE ===== */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    gap: 0.4rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+.header-date {
+    font-size: 0.9rem;
+    color: #cfcfcf;
+}
+
+/* ===== DROITE ===== */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    color: #e5e5e5;
+}
+
+.header-user {
+    font-size: 0.95rem;
+}
+
+.header-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-brown);
+    color: #000;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.header-btn:hover {
+    color: #fff;
+}
+
+.header-icon {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .app-header {
+        left: 220px;
+        padding: 0 1rem;
+        height: 70px;
+        backdrop-filter: blur(8px);
+        /* ✅ conserve l’effet transparent même mobile */
+    }
+
+    .header-title {
+        font-size: 1.1rem;
+    }
+
+    .header-right {
+        gap: 0.8rem;
+    }
+}

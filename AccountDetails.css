@@ -1,0 +1,188 @@
+:root {
+    --panel-bg: #030303;
+    --panel-contrast: rgba(255, 255, 255, 0.03);
+    --gold: #caa06a;
+    --white-70: rgba(255, 255, 255, 0.85);
+    --muted: rgba(255, 255, 255, 0.55);
+}
+
+/* Card principale */
+.account-details-card {
+    position: fixed;
+    bottom: 15px;
+    right: 25px;
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.98), rgba(10, 10, 10, 0.96));
+    color: white;
+    border-radius: 18px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    width: 445px;
+    min-height: 480px;
+    max-height: 90vh;
+    /* ✅ limite la hauteur sur petits écrans */
+    overflow-y: auto;
+    /* ✅ ajoute un scroll si le contenu dépasse */
+    z-index: 50;
+    /* au-dessus du reste */
+}
+
+/* Header (logo + nom/email) */
+.ad-header {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.ad-logo {
+    width: 70px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 8px;
+    flex: 0 0 56px;
+    background: transparent;
+}
+
+/* Texte header */
+.ad-header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-name {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.ad-email {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* Contenu principal */
+.ad-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+    flex: 1 1 auto;
+}
+
+/* Champs alignés en ligne */
+.ad-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gold);
+}
+
+.ad-field-label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    flex: 0.5;
+}
+
+.ad-field-value {
+    font-size: 0.95rem;
+    color: var(--white-70);
+    text-align: right;
+    flex: 0.5;
+}
+
+/* Séparateur supprimé */
+.ad-divider {
+    display: none;
+}
+
+/* Boutons */
+.ad-actions {
+    display: flex;
+    gap: 18px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 16px;
+}
+
+/* Boutons stylisés */
+.ad-btn {
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: 2px solid var(--gold);
+    background: transparent;
+    color: white;
+    font-weight: 300;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease, transform 90ms ease;
+    box-shadow: none;
+    white-space: nowrap;
+    /* ✅ Empêche le texte de se mettre sur deux lignes */
+}
+
+.ad-btn:hover {
+    background: rgba(202, 160, 106, 0.12);
+    transform: translateY(-1px);
+}
+
+.ad-btn:focus {
+    outline: 3px solid rgba(202, 160, 106, 0.18);
+    outline-offset: 2px;
+}
+
+/* ✅ Responsivité améliorée */
+@media (max-width: 1024px) {
+    .account-details-card {
+        width: 380px;
+        padding: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-details-card {
+        width: 85%;
+        /* ✅ ne prend qu'une partie de la largeur */
+        max-width: 350px;
+        /* ✅ limite la taille */
+        right: 10px;
+        bottom: 10px;
+        padding: 20px;
+        min-height: auto;
+        border-radius: 16px;
+    }
+
+    .ad-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .ad-actions {
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        /* ✅ si trop petit, les boutons passent dessous */
+    }
+
+    .ad-btn {
+        padding: 8px 18px;
+        font-size: 0.9rem;
+    }
+
+    .ad-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .ad-field-value {
+        text-align: left;
+        width: 100%;
+    }
+}

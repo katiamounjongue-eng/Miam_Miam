@@ -1,0 +1,76 @@
+:root {
+    --sidebar-width: 265px;
+    --header-height: 80px;
+    --page-bg-top: #525252;
+    --page-bg-bottom: #2e2e2e;
+}
+
+/* Reset global */
+* {
+    box-sizing: border-box;
+    background: none;
+    border: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    background: radial-gradient(circle at 20% 10%, rgba(80, 80, 80, 0.32), transparent 15%),
+        linear-gradient(180deg, var(--page-bg-top), var(--page-bg-bottom));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-y: scroll;
+    /* permet le scroll vertical */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* rend la scrollbar invisible */
+}
+
+/* ===== CONTAINER GLOBAL ===== */
+.app-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100%;
+    background: transparent;
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+.app-main {
+    flex: 1;
+    padding: 2rem;
+    margin-left: var(--sidebar-width);
+    margin-top: var(--header-height);
+    /* ✅ espace sous le header */
+    min-height: calc(100vh - var(--header-height));
+    overflow-x: hidden;
+    color: white;
+    background: transparent;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .app-main {
+        margin-left: 220px;
+        /* largeur mobile de la sidebar */
+        margin-top: 70px;
+        /* header mobile */
+        padding: 1.5rem;
+    }
+}

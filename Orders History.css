@@ -1,0 +1,246 @@
+:root {
+    --panel: linear-gradient(180deg, #232427 0%, #2f3134 100%);
+    --muted: #c6cbd0;
+    --muted-2: #9da3a8;
+    --accent: #f6c46d;
+    --card-border: rgba(255, 255, 255, 0.06);
+}
+
+/* reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* si tu veux conserver un fond sombre global, garde var(--bg) défini ailleurs.
+       Ici on ne modifie pas le body, mais si besoin change en 'background: transparent;' */
+    background: var(--bg);
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* wrapper */
+.orders-root {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px;
+    color: #eef1f3;
+}
+
+/* === MODIF : panneau transparent mais lisible === */
+.orders-container {
+    width: 1100px;
+    padding: 28px;
+    border-radius: 12px;
+
+    /* rendu transparent : */
+    background: transparent;
+
+    /* accentuer la lisibilité sur n'importe quel fond : léger flou + bord */
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+
+    /* bord et ombre pour conserver le relief */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* header */
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.orders-header .left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search input {
+    width: 260px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+    outline: none;
+}
+
+.search input::placeholder {
+    color: rgba(255, 255, 255, 0.18);
+}
+
+.search-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.title {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 700;
+    color: #fbfcfd;
+}
+
+.filter-btn {
+    background: #080808;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/* table headers & layout */
+.table-headers {
+    display: grid;
+    grid-template-columns: 2fr 0.6fr 3fr 1.6fr 1fr;
+    gap: 12px;
+    padding: 10px 6px;
+    color: var(--muted-2);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    margin-bottom: 8px;
+}
+
+.orders-list {
+    margin-top: 8px;
+}
+
+.order-row {
+    display: grid;
+    grid-template-columns: 2fr 0.6fr 3fr 1.6fr 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 18px 6px;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+}
+
+/* === MODIF : avatar parfaitement circulaire et taille fixe === */
+.customer .avatar {
+    width: 28px;
+    /* taille fixe */
+    height: 28px;
+    /* même valeur => cercle */
+    min-width: 28px;
+    /* empêche le redimensionnement */
+    border-radius: 50%;
+    /* cercle */
+    background: rgba(255, 255, 255, 0.85);
+    margin-right: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    flex: 0 0 28px;
+    /* ne se contracte pas / prend exactement cet espace */
+    display: inline-block;
+}
+
+/* si tu utilises une image <img class="avatar">, ajoute :
+   .customer .avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; } */
+
+.customer-name {
+    font-weight: 600;
+    color: #eef1f3;
+}
+
+.id {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.menu-title {
+    font-weight: 600;
+    color: #eef1f3;
+}
+
+.menu-price {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-left: 8px;
+}
+
+.date {
+    color: var(--muted-2);
+    font-size: 13px;
+}
+
+.status {
+    justify-content: flex-end;
+}
+
+.status-pill {
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.status-terminé {
+    background: linear-gradient(90deg, #ffd97a, #c78f00);
+    color: #081014;
+}
+
+.status-rejected {
+    background: linear-gradient(90deg, rgba(120, 120, 120, 0.25), rgba(80, 80, 80, 0.15));
+    color: #dcdcdc;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.status-preparation {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #eef1f3;
+}
+
+.status-en-route {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+    color: #eef1f3;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.status-completed {
+    background: linear-gradient(90deg, #ffd97a, #c78f00);
+    color: #081014;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    margin: 0 6px;
+}
+
+@media (max-width: 900px) {
+    .orders-container {
+        width: 95%;
+        padding: 18px;
+    }
+
+    .table-headers,
+    .order-row {
+        grid-template-columns: 1fr 0.6fr 1fr 1fr;
+    }
+
+    .status {
+        justify-content: flex-start;
+    }
+}

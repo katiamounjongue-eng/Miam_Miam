@@ -1,0 +1,194 @@
+/* AccountCard.css — version compacte et alignée plus bas */
+
+/* Variables */
+:root {
+    --bg-card: linear-gradient(180deg, #0b0b0b 0%, #0f0f0f 100%);
+    --gold: #c8a763;
+    --muted: rgba(255, 255, 255, 0.72);
+    --muted-2: rgba(255, 255, 255, 0.55);
+    --glass: rgba(255, 255, 255, 0.02);
+}
+
+/* Global adjustments for vertical position */
+.account-card-outer:first-child {
+    margin-top: 28px;
+    /* make block sit a bit lower overall */
+}
+
+/* Outer wrapper */
+.account-card-outer {
+    margin: 6px 0;
+    /* reduce spacing between cards */
+    border-radius: 16px;
+    padding: 4px;
+    transition: box-shadow .18s ease, transform .12s ease;
+}
+
+/* gold outline when selected */
+.account-card-outer.selected {
+    border: 1.5px solid var(--gold);
+    background-clip: padding-box;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* inner card */
+.account-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* tighter horizontal spacing */
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* hover */
+.account-card-outer:not(.selected) .account-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+}
+
+/* avatar smaller */
+.avatar {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* avatar img */
+.avatar img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* placeholder */
+.avatar-placeholder {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.95rem;
+}
+
+/* content */
+.account-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* name smaller */
+.account-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* email smaller */
+.account-email {
+    color: var(--muted-2);
+    font-size: 0.78rem;
+}
+
+/* ===== Create account card compact version ===== */
+
+.create-outer {
+    margin-top: 12px;
+    /* less gap */
+    border-radius: 18px;
+    padding: 4px;
+    width: 100%;
+    box-shadow: 0 2px 0 rgba(200, 167, 99, 0.03) inset;
+}
+
+/* main create card smaller */
+.create-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
+    border: 1.5px solid rgba(200, 167, 99, 0.22);
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.create-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* plus button smaller */
+.create-plus {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--gold);
+    border: 2px solid rgba(200, 167, 99, 0.9);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(255, 255, 255, 0.01));
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.45),
+        0 0 14px rgba(200, 167, 99, 0.06) inset;
+}
+
+/* create text smaller */
+.create-text {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.15px;
+}
+
+/* responsive tweaks */
+@media (max-width: 420px) {
+    .avatar {
+        width: 42px;
+        height: 42px;
+    }
+
+    .avatar img {
+        width: 39px;
+        height: 39px;
+    }
+
+    .account-name {
+        font-size: 0.9rem;
+    }
+
+    .account-email {
+        font-size: 0.75rem;
+    }
+
+    .create-plus {
+        width: 46px;
+        height: 46px;
+        font-size: 1.3rem;
+    }
+
+    .create-text {
+        font-size: 0.95rem;
+    }
+}

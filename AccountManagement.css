@@ -1,0 +1,176 @@
+/* AccountManagement.css
+   Full-page dark gradient background + transparent internal panels.
+*/
+
+:root {
+    --page-bg-top: #525252;
+    --page-bg-bottom: #2e2e2e;
+    --panel-bg: rgba(0, 0, 0, 0.45);
+    --muted-white: rgba(255, 255, 255, 0.85);
+    --gold: #d7b774;
+}
+
+/* RESET + full height + remove unwanted default backgrounds */
+* {
+    box-sizing: border-box;
+    background: none;
+    border: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    background: radial-gradient(circle at 20% 10%, rgba(80, 80, 80, 0.32), transparent 15%),
+        linear-gradient(180deg, var(--page-bg-top), var(--page-bg-bottom));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+/* Main container */
+.accounts-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    gap: 28px;
+    padding: 30px;
+    color: white;
+    align-items: flex-start;
+    background: transparent;
+}
+
+/* Left column */
+.accounts-left {
+    width: 340px;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: transparent;
+}
+
+/* Header */
+.accounts-header h2 {
+    margin-top: -5px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+}
+
+/* Accounts list */
+.accounts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Right column */
+.accounts-right {
+    flex: 1;
+    min-width: 320px;
+    background: transparent;
+}
+
+/* No selection */
+.no-selection {
+    color: var(--muted-white);
+    opacity: 0.85;
+    padding: 14px;
+    border-radius: 10px;
+    background: transparent;
+}
+
+/* Account card container */
+.account-card-outer {
+    width: 100%;
+    background: transparent;
+}
+
+/* "Créer un compte" card styling */
+.create-outer {
+    width: 100%;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.create-card {
+    width: 100%;
+    border: 1.2px solid var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.create-card:hover {
+    background: rgba(215, 183, 116, 0.08);
+}
+
+/* plus icon */
+.create-plus {
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1.2px solid var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* text */
+.create-text {
+    color: var(--muted-white);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .accounts-page {
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .accounts-left {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .accounts-right {
+        width: 100%;
+    }
+
+    .create-card {
+        padding: 6px 10px;
+        gap: 6px;
+    }
+
+    .create-text {
+        font-size: 12px;
+    }
+
+    .create-plus {
+        width: 20px;
+        height: 20px;
+        font-size: 16px;
+    }
+}

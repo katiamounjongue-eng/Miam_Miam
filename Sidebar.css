@@ -1,0 +1,157 @@
+:root {
+    --sidebar-width: 265px;
+    --logo-gap: 15px;
+    --accent-brown: #99775f;
+    --footer-bottom: 20px;
+    /* distance du footer par rapport au bas */
+    --footer-padding-horizontal: 1rem;
+    /* marge horizontale pour le footer */
+}
+
+/* container */
+.app-sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    height: 100vh;
+    /* ✅ occupe toute la hauteur de la fenêtre */
+    padding: 1.25rem;
+    background-color: #000;
+    color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    /* ✅ sidebar toujours visible, même au scroll */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 200;
+    overflow-y: auto;
+    /* ✅ permet de scroller uniquement le contenu de la sidebar si trop long */
+}
+
+/* header / logo */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--logo-gap);
+}
+
+.sidebar-logo {
+    max-width: calc(var(--sidebar-width) - 80px);
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* liste d'onglets */
+.sidebar-list {
+    padding-left: 0;
+    margin: 0;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding-bottom: 110px;
+    /* réserve de l'espace pour éviter chevauchement avec le footer */
+}
+
+/* style des liens */
+.app-sidebar .nav-link {
+    color: #cfcfcf;
+    padding: 0.75rem 0.9rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease;
+    background: transparent;
+    display: flex;
+    align-items: center;
+}
+
+/* icon */
+.app-sidebar .nav-link .icon {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    margin-right: 0.9rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-sidebar .nav-link svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    display: block;
+}
+
+/* hover */
+.app-sidebar .nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.04);
+}
+
+/* actif */
+.app-sidebar .nav-link.active {
+    color: var(--accent-brown);
+    border-color: var(--accent-brown);
+    background: rgba(139, 69, 19, 0.03);
+}
+
+/* footer fixé en bas */
+.sidebar-footer {
+    position: sticky;
+    /* ✅ reste visible même si la liste défile */
+    bottom: var(--footer-bottom);
+    left: var(--footer-padding-horizontal);
+    right: var(--footer-padding-horizontal);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    justify-content: flex-start;
+}
+
+/* petit cercle vert avant le texte */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #28a745;
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.35);
+    flex: 0 0 auto;
+}
+
+/* texte "restaurant open" */
+.status-text {
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-transform: none;
+    line-height: 1;
+    user-select: none;
+}
+
+/* ✅ Responsive : sidebar fixe aussi sur mobile */
+@media (max-width: 768px) {
+    .app-sidebar {
+        width: 220px;
+        padding: 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 100vh;
+        z-index: 300;
+        overflow-y: auto;
+    }
+
+    .sidebar-footer {
+        position: sticky;
+        bottom: 20px;
+    }
+}
